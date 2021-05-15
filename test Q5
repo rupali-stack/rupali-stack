@@ -1,0 +1,22 @@
+public static void MyGETRequest() throws IOException {
+    URL urlForGetRequest = new URL("www.example.com/api/get/1");
+    String readLine = null;
+    HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
+    conection.setRequestMethod("GET");
+    int responseCode = conection.getResponseCode();
+
+
+    if (responseCode == HttpURLConnection.HTTP_OK) {
+        BufferedReader in = new BufferedReader(
+            new InputStreamReader(conection.getInputStream()));
+        StringBuffer response = new StringBuffer();
+        while ((readLine = in .readLine()) != null) {
+            response.append(readLine);
+        } in .close();
+        
+        System.out.println("Result" + response.toString());
+    } else {
+        System.out.println("eror occurred");
+    }
+
+}
